@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block header %}
+<script src="https://js.stripe.com/v3/"></script>
+<script src='{% static "js/checkout.js" %}' defer></script>
+{% endblock header %}
+{% block body %}
+
+
+<!-- Hero Start -->
+<section class="bg-half bg-light d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title"> صندوق ها </h4>
+                    <div class="page-next">
+                        <nav aria-label="breadcrumb" class="d-inline-block">
+                            <ul class="breadcrumb bg-white rounded shadow mb-0">
+                                <li class="breadcrumb-item"><a href="index.html">لنـدریـک </a></li>
+                                <li class="breadcrumb-item"><a href="index-shop.html">فروشگاه </a></li>
+                                <li class="breadcrumb-item active" aria-current="page">صندوق ها </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</section>
+<!--end section-->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- Hero End -->
+
+<!-- Start -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-7 col-md-6">
+                <div class="rounded shadow-lg p-4">
+                    <h5 class="mb-0">جزئیات صورتحساب :</h5>
+                <!--end form-->
+                <form id="payment-form" data-secret="{{ client_secret }}">
+                        <div class="row">
+                            {% for field in formData %}
+
+                            {% if field.inputType == "text" or field.inputType == "number" %}
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ field.inputName }}<span class="text-danger">{% if field.required %}*{% endif %}</span></label>
+                                    <input name="{{ field.inputId }}" id="{{ field.inputId }}" type="{{ field.inputType }}" class="form-control" placeholder="{{ field.inputPlaceholder }}" {% if field.required %}required{% endif %}>
+                                </div>
+                            </div>
+                            
+                            {% elif field.inputType == "select" %}
+                            
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">{{ field.inputName }} <span class="text-danger">{% if field.required %}*{% endif %}</span></label>
+                                    <select class="form-select form-control" aria-label="{{ field.inputPlaceholder }}" name="{{ field.inputId }}" {% if field.required %}required{% endif %}>
+                                        {% for option in field.options.all %}
+                                        <option value="{{ option.value }}">{{ option.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            {% elif field.inputType == "checkbox" %}
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="ok" id="{{ field.inputId }}" name="{{ field.inputId }}" {% if field.required %}required{% endif %}>
+                                        <label class="form-check-label" for="creataccount">{{ field.inputPlaceholder }} <span class="text-danger">{% if field.required %}*{% endif %}</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% elif field.inputType == "textarea" %}
+                            
+                            <div class="col-12">
+                                <div class="mb-3">
+                            <label class="form-label">{{ field.inputName }} <span class="text-danger">{% if field.required %}*{% endif %}</span> </label>
+                            <textarea name="{{ field.inputId }}" id="{{ field.inputId }}" rows="4" class="form-control" placeholder="{{ field.inputPlaceholder }}" {% if field.required %}required{% endif %}></textarea>
+                                </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                            <!--end col-->
+                            <div id="payment-element">
+                                <!-- Elements will create form elements here -->
+                              </div>
+                              <div id="error-message">
+                                <!-- Display error message to your customers here -->
+                            </div>
+                              <div class="d-grid">
+                                  <button class="btn btn-primary" id="submit">سفارش دهید</button>
+                              </div>
+
+                        </div>
+                        <!--end row-->
+
+                    </form>
+                </div>
+
+
+            </div>
+            <!--end col-->
+
+            <div class="col-lg-5 col-md-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="rounded shadow-lg p-4 sticky-bar">
+                    <div class="d-flex mb-4 justify-content-between">
+                        <h5>{{ productName }}</h5>
+                        <a class="text-muted h6">جزئیات</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-center table-padding mb-0">
+                            <tbody>
+                                {% for price in prices %}
+                                <tr>
+                                    <td class="h6 border-0">{{ price.name }}</td>
+                                    <td class="text-end fw-bold border-0">${{ price.price }}/{{ price.paymentType }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                
+
+            </div>
+            </div>
+        </div>
+        <!--end row-->
+    </div>
+    <!--end container-->
+</section>
+<!--end section-->
+<!-- End -->
+
+{% endblock body %}
+
+{% block endJS %}
+<script>
+    var csrftoken = '{{ csrf_token }}';
+    var planId = '{{ planId }}'
+</script>
+{% endblock endJS %}

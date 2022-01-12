@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+  <title>لندریک - قالب چندمنظوره ای مدرن html</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+  <meta name="keywords" content="RasaTel, rasatel, sms_to_iran, رساتل, رساتل اس ام اس" />
+  <meta name="author" content="JafarAbbasi" />
+  <meta name="email" content="jabasi26@gmail.com" />
+  <meta name="website" content="https://www.rtl-theme.com/author/tn_plugin/" />
+  <meta name="Version" content="v3.0.0" />
+  <!-- favicon -->
+  <link rel="shortcut icon" href='{% static "images/favicon.ico" %}'>
+  <!-- Bootstrap -->
+  <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet" type="text/css" />
+  <!-- tobii css -->
+  <link href='{% static "css/tobii.min.css" %}' rel="stylesheet" type="text/css" />
+  <!-- Icons -->
+  <link href='{% static "css/materialdesignicons.min.css" %}' rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href='{% static "unicons.iconscout.com/release/v3.0.6/css/line.css" %}'>
+  <!-- Slider -->
+  <link rel="stylesheet" href='{% static "css/tiny-slider.css" %}' />
+  <!-- Animation -->
+  <link href='{% static "css/aos.css" %}' rel="stylesheet" type="text/css" />
+  <!-- Main Css -->
+  <link href='{% static "css/style.min.css" %}' rel="stylesheet" type="text/css" id="theme-opt" />
+  <link href='{% static "css/colors/default.css" %}' rel="stylesheet" id="color-opt">
+  <link href='{% static "css/sms.css" %}' rel="stylesheet" type="text/css" />
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="20">
+
+  <!-- Navbar STart -->
+  <header id="topnav" class="defaultscroll sticky">
+    <div class="container">
+      <!-- Logo container-->
+      <div>
+        <a class="logo" href="#">
+          <img src='{% static "images/logo-dark.png" %}' height="24" alt="">
+        </a>
+      </div>
+
+      <!-- End Logo container-->
+      <div class="menu-extras">
+        <div class="menu-item">
+          <!-- Mobile menu toggle-->
+          <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+            <div class="lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </a>
+          <!-- End mobile menu toggle-->
+        </div>
+      </div>
+
+      <div id="navigation">
+        <!-- Navigation Menu-->
+        <ul class="navigation-menu" id="navmenu-nav">
+          <li class="has-submenu">
+            <a href="#home">خانه </a>
+          </li>
+          <li class="has-submenu">
+            <a href="#service">داشبورد</a>
+          </li>
+        </ul>
+        <!--end navigation menu-->
+      </div>
+      <!--end navigation-->
+    </div>
+    <!--end container-->
+  </header>
+  <!--end header-->
+  <!-- Navbar End -->
+
+
+
+
+  <section class="section">
+
+    <div class="container py-5 px-4">
+
+      <div class="row rounded-lg overflow-hidden shadow">
+        <!-- Users box-->
+        <div class="col-5 px-0">
+          <div class="bg-white">
+
+            <div class="bg-gray px-4 py-2 bg-light">
+              <p class="h5 mb-0 py-1">Recent</p>
+            </div>
+
+            <div class="messages-box">
+              <div id="messageBox"class="list-group rounded-0">
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Chat Box-->
+        <div class="col-7 px-0">
+          <div class="px-4 py-5 chat-box bg-white">
+            <!-- Sender Message-->
+            <div class="media w-50 mb-3"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user"
+                width="50" class="rounded-circle">
+              <div class="media-body ml-3">
+                <div class="bg-light rounded py-2 px-3 mb-2">
+                  <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
+                </div>
+                <p class="small text-muted">12:00 PM | Aug 13</p>
+              </div>
+            </div>
+
+            <!-- Reciever Message-->
+            <div class="media w-50 ml-auto mb-3">
+              <div class="media-body">
+                <div class="bg-primary rounded py-2 px-3 mb-2">
+                  <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
+                </div>
+                <p class="small text-muted">12:00 PM | Aug 13</p>
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- Typing area -->
+          <form action="#" class="bg-light">
+            <div class="input-group">
+              <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+                class="form-control rounded-0 border-0 py-4 bg-light">
+              <div class="input-group-append">
+                <button id="button-addon2" type="submit" class="btn btn-link"> <i
+                    class="fa fa-paper-plane"></i></button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer class="footer footer-bar">
+    <div class="container text-center">
+      <div class="row align-items-center">
+        <div class="col-sm-6">
+          <div class="text-sm-start">
+            <p class="mb-0">©
+              <script>document.write(new Date().getFullYear())</script> لنـدریــک. طراحی شده با <i
+                class="mdi mdi-heart text-danger"></i> توسط <a href="https://www.rtl-theme.com/author/tn_plugin/"
+                target="_blank" class="text-reset">جعفر عباسی </a>.
+            </p>
+          </div>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </footer>
+  <!--end footer-->
+  <!-- Footer End -->
+
+  <!-- Back to top -->
+  <a href="#" onclick="topFunction()" id="back-to-top" class="btn btn-icon btn-primary back-to-top"><i
+      data-feather="arrow-up" class="icons"></i></a>
+  <!-- Back to top -->
+
+
+  <!-- end Style switcher -->
+
+  <!-- javascript -->
+  <script>
+    const port = '{{ goipPort }}'
+  </script>
+  <script src='{% static "js/sms.js" %}'></script>
+  <script src='{% static "js/bootstrap.bundle.min.js" %}'></script>
+  <script src='{% static "js/gumshoe.polyfills.min.js" %}'></script>
+  <!-- SLIDER -->
+  <script src='{% static "js/tiny-slider.js" %}'></script>
+  <!-- tobii js -->
+  <script src='{% static "js/tobii.min.js" %}'></script>
+  <!-- Animation -->
+  <script src='{% static "js/aos.js" %}'></script>
+  <!-- Icons -->
+  <script src='{% static "js/feather.min.js" %}'></script>
+  <!-- Switcher -->
+  <script src='{% static "js/switcher.js" %}'></script>
+  <!-- Main Js -->
+  <script src='{% static "js/plugins.init.js" %}'></script>
+  <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+  <script src='{% static "js/app.js" %}'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block body %}
+
+
+<!-- Hero Start -->
+<section class="bg-half bg-light d-table w-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-next-level">
+                    <h4 class="title"> حساب کاربری و پروفایل </h4>
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div> <!--end container-->
+</section><!--end section-->
+<div class="position-relative">
+    <div class="shape overflow-hidden text-white">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- Hero End -->
+
+<!-- Start -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mt-4 pt-2  bg-white rounded">
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'images/client/05.jpg' %}" class="avatar avatar-md-md rounded-circle" alt="">
+                    <div class="ms-3">
+                        <h6 class="text-muted mb-0">سلام ، </h6>
+                        <h5 class="mb-0">{{ user.first_name }} {{ user.last_name }}</h5>
+                    </div>
+                </div>
+
+                <ul class="nav nav-pills nav-justified flex-column bg-white rounded mt-4 shadow p-3 mb-0" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link rounded active" id="dashboard" data-bs-toggle="pill" href="#dash" role="tab" aria-controls="dash" aria-selected="false">
+                            <div class="text-start py-1 px-3">
+                                <h6 class="mb-0"><i class="uil uil-dashboard h5 align-middle me-2 mb-0"></i>سروبیس ها</h6>
+                            </div>
+                        </a><!--end nav link-->
+                    </li><!--end nav item-->
+                                                
+                    <li class="nav-item mt-2">
+                        <a class="nav-link rounded" id="order-history" data-bs-toggle="pill" href="#orders" role="tab" aria-controls="orders" aria-selected="false">
+                            <div class="text-start py-1 px-3">
+                                <h6 class="mb-0"><i class="uil uil-list-ul h5 align-middle me-2 mb-0"></i>فاکتور ها</h6>
+                            </div>
+                        </a><!--end nav link-->
+                    </li><!--end nav item-->
+                    <li class="nav-item mt-2">
+                        <a class="nav-link rounded" href="{% url 'frontend:logout' %}" aria-selected="false">
+                            <div class="text-start py-1 px-3">
+                                <h6 class="mb-0"><i class="uil uil-sign-out-alt h5 align-middle me-2 mb-0"></i> خروج </h6>
+                            </div>
+                        </a><!--end nav link-->
+                    </li><!--end nav item-->
+                </ul><!--end nav pills-->
+            </div><!--end col-->
+
+            <div class="col-md-8 col-12 mt-4 pt-2">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade bg-white show active shadow rounded p-4" id="dash" role="tabpanel" aria-labelledby="dashboard">
+                    <div class="row">
+
+                        {% for plan in user.subscriptions.all %}
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="card job-box rounded shadow border-0 overflow-hidden" style="padding-top: 40px">
+                                <div class="border-bottom">
+                                <ul class="list-unstyled head mb-0">
+                                    {% if plan.isActive %}
+                                    <li class="badge bg-success rounded-pill"> فعال</li>
+                                    {% else %}
+                                    <li class="badge bg-danger rounded-pill">غیر فعال</li>
+                                    {% endif %}
+                                </ul>
+                                </div>
+                    
+                                <div class="card-body content position-relative">
+                                <div class="firm-logo rounded-circle shadow bg-light text-center">
+                                    {% with plan.carrier|stringformat:"i" as id %}
+                                    {% with "images/carrier/"|add:id|add:".svg" as name %}    
+                                    <img src='{% static name %}' class="avatar avatar-md-sm" alt="" />
+                                    {% endwith %}
+                                    {% endwith %}
+                                </div>
+                                <div class="company-detail text-center mt-3">
+                                    <h5 class="mb-0">
+                                    <a class="text-dark company-name">{{ plan.phonenumber.as_national | slugify  }}</a>
+                                    </h5>
+                                    <p class="text-muted">
+                                    <a href="#" class="text-muted"><i data-feather="map-pin" class="fea icon-sm"></i> {{ plan.get_location_display }} - {{ plan.get_carrier_display }}</a>
+                                    </p>
+                                </div>
+                                <ul class="job-facts list-unstyled">
+                                    <li class="list-inline-item text-muted">
+                                    <i data-feather="check" class="fea icon-sm text-success me-1"></i>اس ام اس
+                                    </li>
+                                    <li class="list-inline-item text-muted">
+                                    <i data-feather="check" class="fea icon-sm text-success me-1"></i>تماس
+                                    </li>
+                                </ul>
+                                
+                                <div class="container" style="padding: 0px; text-align: center; ">
+                                    <div class="row">
+                                        {% if plan.goipPort %}
+                                        <div class="col">
+                                        <a style = "display:flex; justify-content: center; align-items: center;"href="{% url 'frontend:sms' plan.goipPort.id %}" class="btn btn-outline-primary">SMS</a>
+                                        </div>
+                                        {% endif %}
+                                        {% if plan.voip %}
+                                        <div class="col">
+                                        <a style = "display:flex; justify-content: center; align-items: center;" href="page-job-detail.html" class="btn btn-outline-primary">تماس</a>
+                                        </div>                                               
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div><!--end teb pane-->
+
+                    <div class="tab-pane fade bg-white shadow rounded p-4" id="orders" role="tabpanel" aria-labelledby="order-history">
+                        <div class="table-responsive bg-white shadow rounded">
+                            <table class="table mb-0 table-center table-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="border-bottom">شماره سفارش </th>
+                                        <th scope="col" class="border-bottom">تاریخ </th>
+                                        <th scope="col" class="border-bottom">نوع</th>
+                                        <th scope="col" class="border-bottom">مجموع</th>
+                                        <th scope="col" class="border-bottom">توضیحات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for invoice in user.invoices.all %}
+                                    <tr>
+                                        <th scope="row">{{ invoice.id }}</th>
+                                        <td>{{ invoice.timestamp }}</td>
+                                        <td class="text-success">{{ invoice.get_paymentType_display }}</td>
+                                        <td>${{ invoice.amount }}</td>
+                                        <td></td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!--end teb pane-->
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+</section><!--end section-->
+<!-- End -->
+
+
+
+{% endblock body %}
