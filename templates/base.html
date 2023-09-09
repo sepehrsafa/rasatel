@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>رساتل</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+  <meta name="keywords" content="RasaTel, rasatel, sms_to_iran, رساتل, رساتل اس ام اس" />
+  <meta name="author" content="JafarAbbasi" />
+  <meta name="email" content="jabasi26@gmail.com" />
+  <meta name="website" content="https://www.rtl-theme.com/author/tn_plugin/" />
+  <meta name="Version" content="v3.0.0" />
+  <!-- favicon -->
+  <link rel="shortcut icon" href='{% static "images/rasatel-logos/favicon.ico" %}' />
+  <!-- Bootstrap -->
+  <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet" type="text/css" />
+  <!-- tobii css -->
+  <link href='{% static "css/tobii.min.css" %}' rel="stylesheet" type="text/css" />
+  <!-- Icons -->
+  <link href='{% static "css/materialdesignicons.min.css" %}' rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href='{% static "unicons.iconscout.com/release/v3.0.6/css/line.css" %}' />
+  <!-- Slider -->
+  <link rel="stylesheet" href='{% static "css/tiny-slider.css" %}' />
+  <!-- Animation -->
+  <link href='{% static "css/aos.css" %}' rel="stylesheet" type="text/css" />
+  <!-- Main Css -->
+  <link href='{% static "css/style.min.css" %}' rel="stylesheet" type="text/css" id="theme-opt" />
+  <link href='{% static "css/colors/default.css" %}' rel="stylesheet" id="color-opt" />
+  {% block header %} {% endblock header %}
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="20">
+  <!-- Loader -->
+  <!-- <div id="preloader">
+            <div id="status">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div> -->
+  <!-- Loader -->
+
+       <!-- Navbar STart -->
+        <header id="topnav" class="defaultscroll sticky {% if navbarType == 'dashboard'%}nav-sticky{% endif %}">
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a class="logo" href="{% url 'frontend:index' %}">
+                        <img src='{% static "images/rasatel-logos/rasatel-logo1.svg" %}' height="35" alt="">
+                    </a>
+                </div>                 
+                <div class="buy-button">
+                  {% if user.is_authenticated %}
+                  <a href="{% url 'frontend:dashboard' %}" target="_blank" class="btn btn-primary">داشبورد</a>
+                  <a href="{% url 'frontend:logout' %}" target="_blank" class="btn btn-danger">خروج</a>
+                  {% else %}
+                  <a href="{% url 'frontend:login' %}" target="_blank" class="btn btn-primary">ورود</a>
+                  <a href="{% url 'frontend:signup' %}" target="_blank" class="btn btn-primary">ثبت نام</a>
+                  {% endif %}
+                  </div>
+                  <!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+                      {% if navbarType == "dashboard" %}
+                        <li class="has-submenu-item">
+                          <a href="#home">سرویس ها</a>
+                        </li>
+                        <li class="has-submenu-item">
+                          <a href="#service">فاکتور ها</a>
+                        </li>
+                      {% else %}
+                        <li class="has-submenu-item">
+                          <a href="#home">خانه </a>
+                        </li>
+                        <li class="has-submenu-item">
+                          <a href="#service">ویژگی </a>
+                        </li>
+                        <li class="has-submenu-item">
+                          <a href="#testimonial">نظر</a>
+                        </li>
+                        <li class="has-submenu-item">
+                          <a href="#pricing">قیمت</a>
+                        </li>
+                        <li class="has-submenu-item">
+                          <a href="#contact">تماس</a>
+                        </li>
+                      {% endif %}
+
+
+                    </ul><!--end navigation menu-->
+                    <div class="buy-menu-btn d-none">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'frontend:dashboard' %}" target="_blank" class="btn btn-primary">داشبورد</a>
+                        <a href="{% url 'frontend:logout' %}" target="_blank" class="btn btn-danger">خروج</a>
+                        {% else %}
+                        <a href="{% url 'frontend:login' %}" target="_blank" class="btn btn-primary">ورود</a>
+                        <a href="{% url 'frontend:signup' %}" target="_blank" class="btn btn-primary">ثبت نام</a>
+                        {% endif %}
+                        </div>
+                        <!--end login button-->
+                </div><!--end navigation-->
+            </div><!--end container-->
+        </header><!--end header-->
+        <!-- Navbar End -->
+  {% block body %} {% endblock %}
+
+  <!-- Back to top -->
+  <a href="#" onclick="topFunction()" id="back-to-top" class="btn btn-icon btn-primary back-to-top"><i
+      data-feather="arrow-up" class="icons"></i></a>
+  <!-- Back to top -->
+  <!-- Footer Start -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-12 mb-0 mb-md-4 pb-0 pb-md-2" data-aos="fade-up" data-aos-duration="1000">
+          <p class="mt-4">
+            کار با لنـدریــک را شروع کنید که می تواند همه چیزهایی را که برای
+            ایجاد آگاهی ، ایجاد ترافیک ، اتصال به آن نیاز دارید فراهم کند.
+          </p>
+          <ul class="list-unstyled social-icon foot-social-icon mb-0 mt-4">
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded"><i data-feather="facebook"
+                  class="fea icon-sm fea-social"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded"><i data-feather="instagram"
+                  class="fea icon-sm fea-social"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded"><i data-feather="twitter"
+                  class="fea icon-sm fea-social"></i></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="javascript:void(0)" class="rounded"><i data-feather="linkedin"
+                  class="fea icon-sm fea-social"></i></a>
+            </li>
+          </ul>
+          <!--end icon-->
+        </div>
+        <!--end col-->
+
+        <div class="col-lg-2 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0" data-aos="fade-up" data-aos-duration="1400">
+          <h5 class="text-light footer-head">شرکت</h5>
+          <ul class="list-unstyled footer-list mt-4">
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> درباره ما
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> خدمات
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> قیمت گذاری
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> ویژگی ها
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--end col-->
+
+        <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0" data-aos="fade-up" data-aos-duration="1800">
+          <h5 class="text-light footer-head">لینک های مفید</h5>
+          <ul class="list-unstyled footer-list mt-4">
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> ورود
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> پرداخت امن
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-foot"><i class="uil uil-angle-left-b me-1"></i> حریم خصوصی
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!--end col-->
+
+        <div class="col-lg-3 col-md-4 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0" data-aos="fade-up" data-aos-duration="2200">
+          <h5 class="text-light footer-head">خبرنامه</h5>
+          <p class="mt-4">
+            ثبت نام کنید و آخرین نکات را از طریق ایمیل دریافت کنید.
+          </p>
+          <form>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="foot-subscribe mb-3">
+                  <label class="form-label">ایمیل خود را بنویسید
+                    <span class="text-danger">*</span></label>
+                  <div class="form-icon position-relative">
+                    <i data-feather="mail" class="fea icon-sm icons"></i>
+                    <input type="email" name="email" id="emailsubscribe" class="form-control ps-5 rounded"
+                      placeholder="ایمیل شما: " required />
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="d-grid">
+                  <input type="submit" id="submitsubscribe" name="send" class="btn btn-soft-primary" value="خبرنامه" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </footer>
+  <!--end footer-->
+  <footer class="footer footer-bar">
+    <div class="container text-center">
+      <div class="row align-items-center">
+          <div class="text-sm-start">
+            <p class="mb-0"  style="text-align: center;">
+              ©
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              رساتل (RasaTel). طراحی شده با
+              <i class="mdi mdi-heart text-danger"></i> توسط تیم رساتل
+            </p>
+          </div>
+
+        <!--end col-->
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+  </footer>
+  <!--end footer-->
+  <!-- Footer End -->
+
+  <!-- javascript -->
+  <script src='{% static "js/bootstrap.bundle.min.js" %}'></script>
+  <script src='{% static "js/gumshoe.polyfills.min.js" %}'></script>
+  <!-- SLIDER -->
+  <script src='{% static "js/tiny-slider.js" %}'></script>
+  <!-- tobii js -->
+  <script src='{% static "js/tobii.min.js" %}'></script>
+  <!-- Animation -->
+  <script src='{% static "js/aos.js" %}'></script>
+  <!-- Icons -->
+  <script src='{% static "js/feather.min.js" %}'></script>
+  <!-- Switcher -->
+  <script src='{% static "js/switcher.js" %}'></script>
+  <!-- Main Js -->
+  <script src='{% static "js/plugins.init.js" %}'></script>
+  <!--Note: All init js like tiny slider, counter, countdown, maintenance, lightbox, gallery, swiper slider, aos animation etc.-->
+  <script src='{% static "js/app.js" %}'></script>
+  <!--Note: All important javascript like page loader, menu, sticky menu, menu-toggler, one page menu etc. -->
+  {% block endJS %}
+    
+  {% endblock endJS %}
+</body>
+
+</html>
