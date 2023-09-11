@@ -43,7 +43,7 @@ class SendMessage(serializers.Serializer):
 
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     port = serializers.UUIDField()
-    number = PhoneNumber()
+    number = serializers.CharField(max_length=200)
     message = serializers.CharField(max_length=200)
 
 
@@ -91,7 +91,7 @@ class GOIPWebhookSerializer(serializers.Serializer):
 
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
     goip_line = serializers.CharField(max_length=200)
-    from_number = PhoneNumber()
+    from_number = serializers.CharField(max_length=200)
     content = serializers.CharField(max_length=1000)
     recv_time = serializers.DateTimeField()
     serverId = serializers.CharField(max_length=200)
