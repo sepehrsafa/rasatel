@@ -30,6 +30,7 @@ async function postData(url = '', data) {
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrftoken,
+            'Referer': window.location.href,
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         redirect: 'follow', // manual, *follow, error
