@@ -175,6 +175,7 @@ function showMessages(messageBox,number,name){
     currentMessageBox = messageBox
     chatWindowName.innerHTML=name
     messagePage.setAttribute('data-number',number)
+    messageSection.innerHTML=""
 
     getData('/api/sms/retrieve/port/'+port+'/messagebox/'+messageBox+'/messages').then(data =>{
         latestMessage = data[0]['id']
