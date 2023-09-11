@@ -53,7 +53,7 @@ class SendMessage(serializers.Serializer):
         goipPort = validated_data['goipPort']
         contact=validated_data['contact']
 
-        msgBox, created = MessageBox.objects.get_or_create(user=user,goipPort=goipPort,number=validated_data['number'].as_e164,contactInfo=contact)
+        msgBox, created = MessageBox.objects.get_or_create(user=user,goipPort=goipPort,number=validated_data['number'],contactInfo=contact)
 
         msg = Message.objects.create(messageBox=msgBox,message=validated_data['message'],messageType=0)
 
@@ -67,7 +67,7 @@ class SendMessage(serializers.Serializer):
             line = goipPort_.smsServerLine
             message = validated_data['message']
             phone_number = validated_data['number']
-            final_phone_number = phone_number.as_e164
+            final_phone_number = phone_number
             send_goip_sms(url,username,password,line,message,final_phone_number)
         return msg
     
@@ -103,7 +103,7 @@ class GOIPWebhookSerializer(serializers.Serializer):
         user = validated_data['user']
         try:
             goipPort = GoIPPort.objects.get(smsServer=server,smsServerLine=goip_line)
-            msgBox, created = MessageBox.objects.get_or_create(user=goipPort.user,goipPort=goipPort,number=validated_data['from_number'].as_e164)
+            msgBox, created = MessageBox.objects.get_or_create(user=goipPort.user,goipPort=goipPort,number=validated_data['from_number'])
             msg = Message.objects.create(messageBox=msgBox,message=validated_data['content'],messageType=1)
             return msg
         except Exception as e:
