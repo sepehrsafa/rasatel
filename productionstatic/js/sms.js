@@ -30,11 +30,10 @@ async function postData(url = '', data) {
         headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': csrftoken,
-            'Referer': window.location.href,
             // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        referrerPolicy: 'origin', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
 
         body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
