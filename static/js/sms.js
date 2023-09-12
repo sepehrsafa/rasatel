@@ -65,6 +65,16 @@ function messageBoxParser(box){
         else{
             name = box['number']
         }
+        console.log(box)
+        let time = new Date(box['messages'][0]['timestamp'])
+        //format with just the time if today, else format with date and time
+        if(time.toDateString() == new Date().toDateString()){
+            time = time.toLocaleTimeString()
+        }
+        else{
+            time = time.toLocaleString()
+        }
+        //class=read
         var text = `
         <a onclick="javascript:showMessages('${box['id']}','${box['number']}','${name}');">
             <div class="avatar avatar-online">
@@ -73,9 +83,9 @@ function messageBoxParser(box){
             <div class="person-list-body">
                 <div>
                     <h5>${name}</h5>
-                    <p class="read">${box['messages'][0]['message']}</p>
+                    <p >${box['messages'][0]['message']}</p>
                 </div>
-                <div class="last-chat-time"><small class="text-muted">09:25 AM</small></div>
+                <div class="last-chat-time"><small class="text-muted">${time}</small></div>
             </div>
         </a>
     `
@@ -153,7 +163,7 @@ function messageParser(message){
             <div class="message-bubble">
                 <div class="message-text">${message['message']}</div>
             </div>
-            <div class="message-footer">${message['timestamp']}</div>
+            <div class="message-footer">${new Date(message['timestamp']).toLocaleString()}</div>
         </div>`
     
     let div = document.createElement("div");

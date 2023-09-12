@@ -44,30 +44,8 @@
         <!-- Header -->
         <div class="header" style="">
             <div class="top-profile">
-                <a href="profile.html" class="profile">{{ user.first_name }} {{ user.last_name }}</a>
-                <div class="search">
-                    <a href="#" class="search-icon"><img src='{% static "sms/assets/img/icons/search.png" %}'
-                            alt=""></a>
-                    <a href="#" data-toggle="dropdown" aria-expanded="true"><img
-                            src='{% static "sms/assets/img/icons/hamburger-icon.svg" %}' alt=""></a>
-                    <div class="dropdown-menu dropdown-menu-right header_drop_icon">
-                        <a href="create-group-profile.html" class="dropdown-item">New Group</a>
-                        <a href="contacts.html" class="dropdown-item">Contacts</a>
-                        <a href="settings.html" class="dropdown-item">Settings</a>
-                    </div>
-                </div>
-                <div class="search_chat has-search">
-                    <span class="fas fa-search form-control-feedback"></span>
-                    <span class="close-search"><i class="far fa-times-circle"></i></span>
-                    <input class="form-control chat_input" id="search-contact" type="text" placeholder="">
-                </div>
+                <a href="profile.html" class="profile" style="padding-right: 10px; padding-top: 10px;">Line: {{ goipPort.simCardNumber }}</a>
             </div>
-            <ul class="navbar">
-
-                <li class="nav-item text-center">
-                    <a class="nav-link active text-center" href="chat.html">Chat</a>
-                </li>
-            </ul>
             <div class="add-new-btn">
                 <a href="chat-new.html"><i class="fas fa-plus"></i></a>
             </div>
@@ -113,7 +91,7 @@
     </div>
     
     <script>
-        const port = '{{ goipPort }}'
+        const port = '{{ goipPort.id }}'
         const requestuuid = '{{ uuid }}'
         const csrftoken = '{{ csrf_token }}';
     </script>

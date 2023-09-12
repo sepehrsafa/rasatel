@@ -132,7 +132,7 @@ def sms(request,goipPort):
     except:
         raise Http404("sms port does not exist")
     if(user == goip.user):
-        return render(request, "sms.html",context={'user':user,'goipPort':goipPort,'uuid':uuid.uuid4()})
+        return render(request, "sms.html",context={'user':user,'goipPort':goip,'uuid':uuid.uuid4()})
     raise Http404("You dont have access")
 
 

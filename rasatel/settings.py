@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--32@5cceg)@z#9(^w1v4j-0kk#o&$8*$gs1fnzkt44(dn-v&s2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.81.130','192.168.81.13','127.0.0.1','rasatel.ca','172.20.10.2', 'rasatel.owj.app']
+ALLOWED_HOSTS = ['192.168.81.122','192.168.81.13','127.0.0.1','rasatel.ca','172.20.10.2', 'rasatel.owj.app']
 
 
 # Application definition

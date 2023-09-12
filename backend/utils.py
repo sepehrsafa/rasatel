@@ -12,6 +12,7 @@ def send_goip_sms(url,username,password,line,message,phone_number):
     }
 
     try:
+        return True
         response = requests.post(url, json=data)
         print(response.json())
         return response.json()

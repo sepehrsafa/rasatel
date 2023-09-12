@@ -75,7 +75,7 @@
                                 <div class="border-bottom">
                                 <ul class="list-unstyled head mb-0">
                                     {% if plan.isActive %}
-                                    <li class="badge bg-success rounded-pill"> فعال</li>
+                                    <li class="badge bg-success rounded-pill">فعال</li>
                                     {% else %}
                                     <li class="badge bg-danger rounded-pill">غیر فعال</li>
                                     {% endif %}
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="company-detail text-center mt-3">
                                     <h5 class="mb-0">
-                                    <a class="text-dark company-name">{{ plan.phonenumber.as_national | slugify  }}</a>
+                                    <a class="text-dark company-name">{{ plan.phonenumber | slugify  }}</a>
                                     </h5>
                                     <p class="text-muted">
                                     <a href="#" class="text-muted"><i data-feather="map-pin" class="fea icon-sm"></i> {{ plan.get_location_display }} - {{ plan.get_carrier_display }}</a>
