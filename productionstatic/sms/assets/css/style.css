@@ -323,7 +323,7 @@ ul {
 .header {
 	background-image: url('../img/top-curve-bg.png');
 	width: 100%;
-	height: 100px;
+	height: 110px;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -332,7 +332,7 @@ ul {
 }
 
 .header-small {
-	height: 115px;
+	height: 90px;
 }
 .top-profile {
 	display: flex;
@@ -2446,7 +2446,7 @@ input:checked + .slider .off {
 	max-width: 160px;
 }
 .mytopMargin{
-	margin-top: 140px;
+	margin-top: 100px;
 }
 
 @media only screen and (min-width: 768px) {
