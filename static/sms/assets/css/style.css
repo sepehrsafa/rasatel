@@ -2585,11 +2585,6 @@ border-color: #e6e6e6;
 }
 
 
-
-
-
-@use postcss-nested;
-
 :root {
   --send-bg: #0B93F6;
   --send-color: white;
