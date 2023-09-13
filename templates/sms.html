@@ -30,7 +30,7 @@
 <body class="chat-bg">
 
     <div id="messageBoxPage" class="main-wrapper">
-        <div id="chatBoxContent" style="position:absolute; top:0px; bottom:5px; left:0px; right:0px; overflow:auto;"> 
+        <div id="chatBoxContent" style="position:absolute; top:0px; bottom:5px; left:0px; right:0px; overflow-y:auto; overflow-x: clip"> 
         <div class="chat-list-col mytopMargin">
             <div id="testt"class="container">
                 <div class="person-list">
@@ -61,13 +61,14 @@
         <!-- /Header -->
 
         <div class="main-wrapper messages-content">
-            <div id="smsContent" style="position:absolute; top:0px; bottom:60px; left:0px; right:0px; overflow:auto;"> 
+            <div id="smsContent" style="position:absolute; top:0px; bottom:60px; left:0px; right:0px; overflow-y:auto; overflow-x: clip"> 
                 
-                <div id="messageSection" class="messages"></div>
+                <div id="messageSection" class="messages">
+                    
+                </div>
                 
             </div>
-        
-
+            
             <div class="chat-footer" style="bottom:0px;">
                 <form id="sendMessageButton">
                     <input id="textMessageInput" type="text" class="form-control1 chat_form" placeholder="Write a message.">

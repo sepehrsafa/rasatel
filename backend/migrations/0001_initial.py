@@ -170,7 +170,7 @@ class Migration(migrations.Migration):
                 ('messageType', models.IntegerField(choices=[(0, 'send'), (1, 'receive')])),
                 ('message', models.TextField()),
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
-                ('hasBeenRead', models.BooleanField(default=False)),
+                ('read', models.BooleanField(default=False)),
                 ('messageBox', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='messages', to='backend.messagebox')),
             ],
             options={

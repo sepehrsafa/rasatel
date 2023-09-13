@@ -1,8 +1,8 @@
 import requests
 
 
-def send_goip_sms(url,username,password,line,message,phone_number):
-    url = f'{url}/goip/sendsms/'
+def send_goip_sms(url, username, password, line, message, phone_number):
+    url = f"{url}/goip/sendsms/"
 
     data = {
         "auth": {"username": username, "password": password},
@@ -17,6 +17,6 @@ def send_goip_sms(url,username,password,line,message,phone_number):
         print(response.json())
         return response.json()
     except Exception as e:
-        #logging.error(f"Failed to send SMS. Error: {e}")
+        # logging.error(f"Failed to send SMS. Error: {e}")
         print(e)
         return {"result": "FAILURE", "reason": str(e)}

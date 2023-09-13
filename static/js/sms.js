@@ -75,15 +75,17 @@ function messageBoxParser(box){
             time = time.toLocaleString()
         }
         //class=read
+        let read = box['read'] ? '' : 'avatar-online'
+            
         var text = `
         <a onclick="javascript:showMessages('${box['id']}','${box['number']}','${name}');">
-            <div class="avatar avatar-online">
+            <div class="avatar ${read}" id='read-${box['id']}'>
                 <img src=/static/sms/assets/img/avatar2.png width="48" alt="">
             </div>
             <div class="person-list-body">
                 <div>
                     <h5>${name}</h5>
-                    <p >${box['messages'][0]['message']}</p>
+                    <p>${box['messages'][0]['message']}</p>
                 </div>
                 <div class="last-chat-time"><small class="text-muted">${time}</small></div>
             </div>
@@ -157,14 +159,26 @@ function oldRetrieveMessageBoxes(){
 )}
 
 function messageParser(message){
-    
+
+
+
+    if(message['messageType']==1){
+    let= internalClass = "receive"
+    let= internalfloat = "left"
+    }
+    else{
+    internalClass = "send"
+    internalfloat = "right"
+    }
     var text = `
-        <div class="message-content">
-            <div class="message-bubble">
-                <div class="message-text">${message['message']}</div>
-            </div>
-            <div class="message-footer">${new Date(message['timestamp']).toLocaleString()}</div>
+
+        <div class="message-content" style="float: ${internalfloat};">
+        <p class="${internalClass} custom-i">${message['message']}</p>
+            <div class="message-footer" style="margin-top: 0px !important">${new Date(message['timestamp']).toLocaleString()}</div>
         </div>`
+
+
+
     
     let div = document.createElement("div");
     div.setAttribute("id", message['id']);
@@ -173,6 +187,17 @@ function messageParser(message){
     else
     div.setAttribute("class", "message message-sent message-first");
     div.innerHTML = text.trim();
+
+
+    let p = document.createElement("p");
+    p.setAttribute("id", message['id']);
+    p.setAttribute("class", "custom-i");
+    if(message['messageType']==1)
+    p.setAttribute("class", "receive custom-i");
+    else
+    p.setAttribute("class", "send custom-i");
+    p.innerHTML = message['message'];
+    //return p
     return div
 
 }
@@ -231,11 +256,13 @@ function getOlderMessages(){
 }
 
 function showMessageBoxes(){
+    console.log(currentMessageBox)
     clearInterval(updateMessagesIntervalID)
     updateRetrieveMessageBoxes()
     updateRetrieveMessageBoxesInterval(1)
     messageBoxPage.hidden = false
     messagePage.hidden = true
+    document.getElementById(`read-${currentMessageBox}`).classList.remove('avatar-online')
 }
 
 sendSMS.addEventListener("submit", function(e){
